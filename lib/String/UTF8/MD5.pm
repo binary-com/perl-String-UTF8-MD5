@@ -4,9 +4,13 @@ use 5.006;
 use strict;
 use warnings FATAL => 'all';
 
+use base qw(Exporter);
+
+our $EXPORT_OK = qw(md5);
+
 =head1 NAME
 
-String::UTF8::MD5 - The great new String::UTF8::MD5!
+String::UTF8::MD5 - UTF-8-safe md5sums of strings
 
 =head1 VERSION
 
@@ -19,39 +23,39 @@ our $VERSION = '0.01';
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+This is a simple UTF8-safe wrapper around Crypt::MD5, for use with utf-8 strings.
 
-Perhaps a little code snippet.
-
-    use String::UTF8::MD5;
-
-    my $foo = String::UTF8::MD5->new();
-    ...
+use String::
 
 =head1 EXPORT
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=head2 md5 may be exported if requested
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 md5
 
 =cut
 
-sub function1 {
-}
+sub md5 {
+    my ($string) = @_;
 
-=head2 function2
+    # remove utf-8 encoding
+    if (Encode::is_utf8($string)) {
+            $string = Encode::encode_utf8($string);
+    }
 
-=cut
-
-sub function2 {
+    return Digest::MD5::md5_hex($string);
 }
 
 =head1 AUTHOR
 
 Binary.com, C<< <cpan at binary.com> >>
+
+=head1 TODO
+
+Only hex notation is currently supported.  In the future we need to add additional
+formatting options.
 
 =head1 BUGS
 
