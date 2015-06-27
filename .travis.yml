@@ -1,0 +1,15 @@
+language: perl
+perl:
+    - "5.18"
+    - "5.16"
+    - "5.14"
+    - "5.12"
+    - "5.10"
+    # - "5.08" for some reason is incompatible our tests on travis-ci only
+before_install:
+  - "cpanm Devel::Cover::Report::Coveralls"
+  - "cpanm Digest::MD5"
+  - "perl Makefile.PL"
+  - "make"
+script:
+  make test && cover -test -report coveralls
