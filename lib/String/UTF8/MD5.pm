@@ -3,7 +3,8 @@ package String::UTF8::MD5;
 use 5.006;
 use strict;
 use warnings FATAL => 'all';
-
+use Digest::MD5;
+use Encode;
 use base qw(Exporter);
 
 our $EXPORT_OK = qw(md5);
