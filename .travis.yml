@@ -17,9 +17,9 @@ before_install:
   - source ~/travis-perl-helpers/init
   - build-perl
   - perl -V
-  - "cpanm Devel::Cover::Report::Coveralls"
+  - "cpanm Devel::Cover::Report::Codecov"
   - "cpanm Digest::MD5"
   - "perl Makefile.PL"
   - "make"
 script:
-  make test && cover -test -report coveralls
+  make test && cover -test -report codecov
