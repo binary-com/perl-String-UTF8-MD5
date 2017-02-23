@@ -1,5 +1,8 @@
 Revision history for String-UTF8-MD5
 
+{{$NEXT}}
+       Switch to dzil
+
 0.01    Date/time
         First version, released on an unsuspecting world.
 
