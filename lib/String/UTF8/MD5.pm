@@ -15,8 +15,7 @@ String::UTF8::MD5 - UTF-8-safe md5sums of strings
 
 =cut
 
-our $VERSION = '0.01';
-
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -39,7 +38,7 @@ sub md5 {
 
     # remove utf-8 encoding
     if (Encode::is_utf8($string)) {
-            $string = Encode::encode_utf8($string);
+        $string = Encode::encode_utf8($string);
     }
 
     return Digest::MD5::md5_hex($string);
@@ -99,4 +98,4 @@ L<http://search.cpan.org/dist/String-UTF8-MD5/>
 
 =cut
 
-1; # End of String::UTF8::MD5
+1;    # End of String::UTF8::MD5
